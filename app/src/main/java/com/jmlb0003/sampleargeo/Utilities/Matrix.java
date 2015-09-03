@@ -1,4 +1,4 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Utilities;
 
 public class Matrix {
     private static final Matrix tmp = new Matrix();

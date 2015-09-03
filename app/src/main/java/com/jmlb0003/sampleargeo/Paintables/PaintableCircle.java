@@ -1,19 +1,19 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Paintables;
 
 import android.graphics.Canvas;
 
-public class PaintablePoint extends PaintableObject {
-    private static int width = 2;
-    private static int height = 2;
+public class PaintableCircle extends PaintableObject {
     private int color = 0;
+    private float radius = 0;
     private boolean fill = false;
 
-    public PaintablePoint(int color, boolean fill) {
-        set(color, fill);
+    public PaintableCircle(int color, float radius, boolean fill) {
+        set(color, radius, fill);
     }
 
-    public void set(int color, boolean fill) {
+    public void set(int color, float radius, boolean fill) {
         this.color = color;
+        this.radius = radius;
         this.fill = fill;
     }
 
@@ -23,16 +23,16 @@ public class PaintablePoint extends PaintableObject {
 
         setFill(fill);
         setColor(color);
-        paintRect(canvas, -1, -1, width, height);
+        paintCircle(canvas, 0, 0, radius);
     }
 
     @Override
     public float getWidth() {
-        return width;
+        return radius * 2;
     }
 
     @Override
     public float getHeight() {
-        return height;
+        return radius * 2;
     }
 }

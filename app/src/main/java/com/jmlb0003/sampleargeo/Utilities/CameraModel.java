@@ -1,4 +1,6 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Utilities;
+
+
 
 public class CameraModel {
     public static final float DEFAULT_VIEW_ANGLE = (float) Math.toRadians(45);

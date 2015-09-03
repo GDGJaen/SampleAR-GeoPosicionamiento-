@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.jmlb0003.sampleargeo.data.LocalDataSource;
+import com.jmlb0003.sampleargeo.sync.NetworkDataSource;
+import com.jmlb0003.sampleargeo.sync.WikipediaDataSource;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;

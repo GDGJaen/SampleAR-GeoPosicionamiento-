@@ -1,4 +1,6 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.data;
+
+import com.jmlb0003.sampleargeo.Marker;
 
 import java.util.List;
 

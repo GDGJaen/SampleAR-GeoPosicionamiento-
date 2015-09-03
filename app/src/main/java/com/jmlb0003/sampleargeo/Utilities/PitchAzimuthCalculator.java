@@ -1,4 +1,4 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Utilities;
 
 public class PitchAzimuthCalculator {
     private static final Vector looking = new Vector();
@@ -10,8 +10,6 @@ public class PitchAzimuthCalculator {
 
     private PitchAzimuthCalculator() {
     }
-
-    ;
 
     public static synchronized float getAzimuth() {
         return PitchAzimuthCalculator.azimuth;

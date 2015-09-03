@@ -3,6 +3,8 @@ package com.jmlb0003.sampleargeo;
 import android.location.Location;
 import android.util.Log;
 
+import com.jmlb0003.sampleargeo.Utilities.Matrix;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

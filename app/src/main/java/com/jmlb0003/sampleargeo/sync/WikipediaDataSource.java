@@ -1,9 +1,13 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.sync;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+
+import com.jmlb0003.sampleargeo.IconMarker;
+import com.jmlb0003.sampleargeo.Marker;
+import com.jmlb0003.sampleargeo.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

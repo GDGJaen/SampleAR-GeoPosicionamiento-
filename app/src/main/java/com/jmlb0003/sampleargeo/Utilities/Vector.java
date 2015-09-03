@@ -1,4 +1,4 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Utilities;
 
 public class Vector {
     private final float[] matrixArray = new float[9];

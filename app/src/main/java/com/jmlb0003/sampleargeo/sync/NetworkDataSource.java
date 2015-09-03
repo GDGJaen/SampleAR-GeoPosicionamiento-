@@ -1,4 +1,7 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.sync;
+
+import com.jmlb0003.sampleargeo.data.DataSource;
+import com.jmlb0003.sampleargeo.Marker;
 
 import org.json.JSONException;
 import org.json.JSONObject;

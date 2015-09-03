@@ -1,4 +1,4 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Paintables;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

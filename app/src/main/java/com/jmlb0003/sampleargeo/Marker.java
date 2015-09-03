@@ -5,6 +5,16 @@ import android.graphics.Color;
 import android.location.Location;
 import android.util.Log;
 
+import com.jmlb0003.sampleargeo.Paintables.PaintableBox;
+import com.jmlb0003.sampleargeo.Paintables.PaintableBoxedText;
+import com.jmlb0003.sampleargeo.Paintables.PaintableGps;
+import com.jmlb0003.sampleargeo.Paintables.PaintableObject;
+import com.jmlb0003.sampleargeo.Paintables.PaintablePosition;
+import com.jmlb0003.sampleargeo.Utilities.CameraModel;
+import com.jmlb0003.sampleargeo.Utilities.PhysicalLocationUtility;
+import com.jmlb0003.sampleargeo.Utilities.Utilities;
+import com.jmlb0003.sampleargeo.Utilities.Vector;
+
 import java.text.DecimalFormat;
 
 public class Marker implements Comparable<Marker> {
@@ -357,7 +367,7 @@ public class Marker implements Comparable<Marker> {
     protected synchronized void drawText(Canvas canvas) {
         if (canvas == null) throw new NullPointerException();
 
-        String textStr = null;
+        String textStr;
         if (distance < 1000.0) {
             textStr = name + " (" + DECIMAL_FORMAT.format(distance) + "m)";
         } else {

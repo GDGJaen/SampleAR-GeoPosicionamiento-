@@ -1,6 +1,10 @@
-package com.jmlb0003.sampleargeo;
+package com.jmlb0003.sampleargeo.Paintables;
 
 import android.graphics.Canvas;
+
+import com.jmlb0003.sampleargeo.ARData;
+import com.jmlb0003.sampleargeo.Marker;
+import com.jmlb0003.sampleargeo.Radar;
 
 public class PaintableRadarPoints extends PaintableObject {
     private final float[] locationArray = new float[3];

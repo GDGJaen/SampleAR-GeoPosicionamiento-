@@ -19,6 +19,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.jmlb0003.sampleargeo.Utilities.VerticalSeekBar;
+
 import java.text.DecimalFormat;
 
 public class AugmentedActivity extends SensorsActivity implements OnTouchListener {
