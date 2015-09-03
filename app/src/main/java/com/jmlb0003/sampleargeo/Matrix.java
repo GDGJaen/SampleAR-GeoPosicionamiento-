@@ -3,15 +3,17 @@ package com.jmlb0003.sampleargeo;
 public class Matrix {
     private static final Matrix tmp = new Matrix();
 
-    private volatile float a1=0f, a2=0f, a3=0f;
-    private volatile float b1=0f, b2=0f, b3=0f;
-    private volatile float c1=0f, c2=0f, c3=0f;
-    
-    public Matrix() { }
+    private volatile float a1 = 0f, a2 = 0f, a3 = 0f;
+    private volatile float b1 = 0f, b2 = 0f, b3 = 0f;
+    private volatile float c1 = 0f, c2 = 0f, c3 = 0f;
+
+    public Matrix() {
+    }
 
     public synchronized float getA1() {
         return a1;
     }
+
     public synchronized void setA1(float a1) {
         this.a1 = a1;
     }
@@ -19,6 +21,7 @@ public class Matrix {
     public synchronized float getA2() {
         return a2;
     }
+
     public synchronized void setA2(float a2) {
         this.a2 = a2;
     }
@@ -26,6 +29,7 @@ public class Matrix {
     public synchronized float getA3() {
         return a3;
     }
+
     public synchronized void setA3(float a3) {
         this.a3 = a3;
     }
@@ -33,6 +37,7 @@ public class Matrix {
     public synchronized float getB1() {
         return b1;
     }
+
     public synchronized void setB1(float b1) {
         this.b1 = b1;
     }
@@ -40,6 +45,7 @@ public class Matrix {
     public synchronized float getB2() {
         return b2;
     }
+
     public synchronized void setB2(float b2) {
         this.b2 = b2;
     }
@@ -47,6 +53,7 @@ public class Matrix {
     public synchronized float getB3() {
         return b3;
     }
+
     public synchronized void setB3(float b3) {
         this.b3 = b3;
     }
@@ -54,6 +61,7 @@ public class Matrix {
     public synchronized float getC1() {
         return c1;
     }
+
     public synchronized void setC1(float c1) {
         this.c1 = c1;
     }
@@ -61,6 +69,7 @@ public class Matrix {
     public synchronized float getC2() {
         return c2;
     }
+
     public synchronized void setC2(float c2) {
         this.c2 = c2;
     }
@@ -68,14 +77,15 @@ public class Matrix {
     public synchronized float getC3() {
         return c3;
     }
+
     public synchronized void setC3(float c3) {
         this.c3 = c3;
     }
 
     public synchronized void get(float[] array) {
-        if (array==null || array.length!=9) 
+        if (array == null || array.length != 9)
             throw new IllegalArgumentException("get() array must be non-NULL and size of 9");
-        
+
         array[0] = this.a1;
         array[1] = this.a2;
         array[2] = this.a3;
@@ -90,11 +100,11 @@ public class Matrix {
     }
 
     public void set(Matrix m) {
-        if (m==null) throw new NullPointerException();
+        if (m == null) throw new NullPointerException();
 
-        set(m.a1,m. a2, m.a3, m.b1, m.b2, m.b3, m.c1, m.c2, m.c3);
+        set(m.a1, m.a2, m.a3, m.b1, m.b2, m.b3, m.c1, m.c2, m.c3);
     }
-    
+
     public synchronized void set(float a1, float a2, float a3, float b1, float b2, float b3, float c1, float c2, float c3) {
         this.a1 = a1;
         this.a2 = a2;
@@ -177,7 +187,7 @@ public class Matrix {
 
     public synchronized float det() {
         return (this.a1 * this.b2 * this.c3) - (this.a1 * this.b3 * this.c2) - (this.a2 * this.b1 * this.c3) +
-        (this.a2 * this.b3 * this.c1) + (this.a3 * this.b1 * this.c2) - (this.a3 * this.b2 * this.c1);
+                (this.a2 * this.b3 * this.c1) + (this.a3 * this.b1 * this.c2) - (this.a3 * this.b2 * this.c1);
     }
 
     public synchronized void mult(float c) {
@@ -195,7 +205,7 @@ public class Matrix {
     }
 
     public synchronized void prod(Matrix n) {
-        if (n==null) throw new NullPointerException();
+        if (n == null) throw new NullPointerException();
 
         tmp.set(this);
         this.a1 = (tmp.a1 * n.a1) + (tmp.a2 * n.b1) + (tmp.a3 * n.c1);
@@ -213,8 +223,8 @@ public class Matrix {
 
     @Override
     public synchronized String toString() {
-        return "(" + this.a1 + "," + this.a2 + "," + this.a3 + ")"+
-               " (" + this.b1 + "," + this.b2 + "," + this.b3 + ")"+
-               " (" + this.c1 + "," + this.c2 + "," + this.c3 + ")";
+        return "(" + this.a1 + "," + this.a2 + "," + this.a3 + ")" +
+                " (" + this.b1 + "," + this.b2 + "," + this.b3 + ")" +
+                " (" + this.c1 + "," + this.c2 + "," + this.c3 + ")";
     }
 }

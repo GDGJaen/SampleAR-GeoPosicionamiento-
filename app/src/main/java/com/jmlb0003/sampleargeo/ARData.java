@@ -1,5 +1,8 @@
 package com.jmlb0003.sampleargeo;
 
+import android.location.Location;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,45 +13,46 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import android.location.Location;
-import android.util.Log;
-
 public abstract class ARData {
+    public static final Location hardFix = new Location("ATL");
     private static final String TAG = "ARData";
-	private static final Map<String,Marker> markerList = new ConcurrentHashMap<String,Marker>();
-    private static final List<Marker> cache = new CopyOnWriteArrayList<Marker>();
+    private static final Map<String, Marker> markerList = new ConcurrentHashMap<>();
+    private static final List<Marker> cache = new CopyOnWriteArrayList<>();
     private static final AtomicBoolean dirty = new AtomicBoolean(false);
     private static final float[] locationArray = new float[3];
-    
-    public static final Location hardFix = new Location("ATL");
+    private static final Object radiusLock = new Object();
+    private static final Object zoomProgressLock = new Object();
+    private static final Object azimuthLock = new Object();
+    private static final Object pitchLock = new Object();
+    private static final Object rollLock = new Object();
+    private static final Comparator<Marker> comparator = new Comparator<Marker>() {
+        public int compare(Marker arg0, Marker arg1) {
+            return Double.compare(arg0.getDistance(), arg1.getDistance());
+        }
+    };
+    private static float radius = new Float(20);
+    private static String zoomLevel = new String();
+    private static int zoomProgress = 0;
+    private static Location currentLocation = hardFix;
+    private static Matrix rotationMatrix = new Matrix();
+    private static float azimuth = 0;
+    private static float pitch = 0;
+    private static float roll = 0;
+
     static {
         hardFix.setLatitude(0);
         hardFix.setLongitude(0);
         hardFix.setAltitude(1);
     }
-    
-    private static final Object radiusLock = new Object();
-    private static float radius = new Float(20);
-    private static String zoomLevel = new String();
-    private static final Object zoomProgressLock = new Object();
-    private static int zoomProgress = 0;
-    private static Location currentLocation = hardFix;
-    private static Matrix rotationMatrix = new Matrix();
-    private static final Object azimuthLock = new Object();
-    private static float azimuth = 0;
-    private static final Object pitchLock = new Object();
-    private static float pitch = 0;
-    private static final Object rollLock = new Object();
-    private static float roll = 0;
 
     public static void setZoomLevel(String zoomLevel) {
-    	if (zoomLevel==null) throw new NullPointerException();
-    	
-    	synchronized (ARData.zoomLevel) {
-    	    ARData.zoomLevel = zoomLevel;
-    	}
+        if (zoomLevel == null) throw new NullPointerException();
+
+        synchronized (ARData.zoomLevel) {
+            ARData.zoomLevel = zoomLevel;
+        }
     }
-    
+
     public static void setZoomProgress(int zoomProgress) {
         synchronized (ARData.zoomProgressLock) {
             if (ARData.zoomProgress != zoomProgress) {
@@ -60,12 +64,6 @@ public abstract class ARData {
             }
         }
     }
-    
-    public static void setRadius(float radius) {
-        synchronized (ARData.radiusLock) {
-            ARData.radius = radius;
-        }
-    }
 
     public static float getRadius() {
         synchronized (ARData.radiusLock) {
@@ -73,19 +71,31 @@ public abstract class ARData {
         }
     }
 
-    public static void setCurrentLocation(Location currentLocation) {
-    	if (currentLocation==null) throw new NullPointerException();
-    	
-    	Log.d(TAG, "current location. location="+currentLocation.toString());
-    	synchronized (currentLocation) {
-    	    ARData.currentLocation = currentLocation;
-    	}
-        onLocationChanged(currentLocation);
+    public static void setRadius(float radius) {
+        synchronized (ARData.radiusLock) {
+            ARData.radius = radius;
+        }
     }
-    
+
     public static Location getCurrentLocation() {
         synchronized (ARData.currentLocation) {
             return ARData.currentLocation;
+        }
+    }
+
+    public static void setCurrentLocation(Location currentLocation) {
+        if (currentLocation == null) throw new NullPointerException();
+
+        Log.d(TAG, "current location. location=" + currentLocation.toString());
+        synchronized (currentLocation) {
+            ARData.currentLocation = currentLocation;
+        }
+        onLocationChanged(currentLocation);
+    }
+
+    public static Matrix getRotationMatrix() {
+        synchronized (ARData.rotationMatrix) {
+            return rotationMatrix;
         }
     }
 
@@ -95,35 +105,23 @@ public abstract class ARData {
         }
     }
 
-    public static Matrix getRotationMatrix() {
-        synchronized (ARData.rotationMatrix) {
-            return rotationMatrix;
-        }
-    }
-    
     public static List<Marker> getMarkers() {
         if (dirty.compareAndSet(true, false)) {
             Log.v(TAG, "DIRTY flag found, resetting all marker heights to zero.");
-            for(Marker ma : markerList.values()) {
+            for (Marker ma : markerList.values()) {
                 ma.getLocation().get(locationArray);
-                locationArray[1]=ma.getInitialY();
+                locationArray[1] = ma.getInitialY();
                 ma.getLocation().set(locationArray);
             }
 
             Log.v(TAG, "Populating the cache.");
             List<Marker> copy = new ArrayList<Marker>();
             copy.addAll(markerList.values());
-            Collections.sort(copy,comparator);
+            Collections.sort(copy, comparator);
             cache.clear();
             cache.addAll(copy);
         }
         return Collections.unmodifiableList(cache);
-    }
-
-    public static void setAzimuth(float azimuth) {
-        synchronized (azimuthLock) {
-            ARData.azimuth = azimuth;
-        }
     }
 
     public static float getAzimuth() {
@@ -132,9 +130,9 @@ public abstract class ARData {
         }
     }
 
-    public static void setPitch(float pitch) {
-        synchronized (pitchLock) {
-            ARData.pitch = pitch;
+    public static void setAzimuth(float azimuth) {
+        synchronized (azimuthLock) {
+            ARData.azimuth = azimuth;
         }
     }
 
@@ -144,9 +142,9 @@ public abstract class ARData {
         }
     }
 
-    public static void setRoll(float roll) {
-        synchronized (rollLock) {
-            ARData.roll = roll;
+    public static void setPitch(float pitch) {
+        synchronized (pitchLock) {
+            ARData.pitch = pitch;
         }
     }
 
@@ -155,35 +153,35 @@ public abstract class ARData {
             return ARData.roll;
         }
     }
-    
-    private static final Comparator<Marker> comparator = new Comparator<Marker>() {
-        public int compare(Marker arg0, Marker arg1) {
-            return Double.compare(arg0.getDistance(),arg1.getDistance());
+
+    public static void setRoll(float roll) {
+        synchronized (rollLock) {
+            ARData.roll = roll;
         }
-    };
+    }
 
     public static void addMarkers(Collection<Marker> markers) {
-    	if (markers==null) throw new NullPointerException();
+        if (markers == null) throw new NullPointerException();
 
-    	if (markers.size()<=0) return;
-    	
-    	Log.d(TAG, "New markers, updating markers. new markers="+markers.toString());
-    	for(Marker marker : markers) {
-    	    if (!markerList.containsKey(marker.getName())) {
-    	        marker.calcRelativePosition(ARData.getCurrentLocation());
-    	        markerList.put(marker.getName(),marker);
-    	    }
-    	}
+        if (markers.size() <= 0) return;
 
-    	if (dirty.compareAndSet(false, true)) {
-    	    Log.v(TAG, "Setting DIRTY flag!");
-    	    cache.clear();
-    	}
+        Log.d(TAG, "New markers, updating markers. new markers=" + markers.toString());
+        for (Marker marker : markers) {
+            if (!markerList.containsKey(marker.getName())) {
+                marker.calcRelativePosition(ARData.getCurrentLocation());
+                markerList.put(marker.getName(), marker);
+            }
+        }
+
+        if (dirty.compareAndSet(false, true)) {
+            Log.v(TAG, "Setting DIRTY flag!");
+            cache.clear();
+        }
     }
-    
+
     private static void onLocationChanged(Location location) {
-        Log.d(TAG, "New location, updating markers. location="+location.toString());
-        for(Marker ma: markerList.values()) {
+        Log.d(TAG, "New location, updating markers. location=" + location.toString());
+        for (Marker ma : markerList.values()) {
             ma.calcRelativePosition(location);
         }
 

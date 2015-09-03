@@ -8,24 +8,28 @@ public class PitchAzimuthCalculator {
 
     private static volatile float pitch = 0;
 
-    private PitchAzimuthCalculator() {};
+    private PitchAzimuthCalculator() {
+    }
+
+    ;
 
     public static synchronized float getAzimuth() {
         return PitchAzimuthCalculator.azimuth;
     }
+
     public static synchronized float getPitch() {
         return PitchAzimuthCalculator.pitch;
     }
 
     public static synchronized void calcPitchBearing(Matrix rotationM) {
-        if (rotationM==null) return;
+        if (rotationM == null) return;
 
         looking.set(0, 0, 0);
         rotationM.transpose();
         looking.set(1, 0, 0);
         looking.prod(rotationM);
         looking.get(lookingArray);
-        PitchAzimuthCalculator.azimuth = ((Utilities.getAngle(0, 0, lookingArray[0], lookingArray[2])  + 360 ) % 360);
+        PitchAzimuthCalculator.azimuth = ((Utilities.getAngle(0, 0, lookingArray[0], lookingArray[2]) + 360) % 360);
 
         rotationM.transpose();
         looking.set(0, 1, 0);

@@ -1,5 +1,8 @@
 package com.jmlb0003.sampleargeo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,25 +13,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public abstract class NetworkDataSource extends DataSource {
     protected static final int MAX = 1000;
     protected static final int READ_TIMEOUT = 10000;
     protected static final int CONNECT_TIMEOUT = 10000;
 
     protected List<Marker> markersCache = null;
-    
-    public abstract String createRequestURL(double lat, double lon, double alt,
-                                            float radius, String locale);
 
-    public abstract List<Marker> parse(JSONObject root);
-
-    public List<Marker> getMarkers() {
-        return markersCache;
-    }
-    
     protected static InputStream getHttpGETInputStream(String urlStr) {
         if (urlStr == null)
             throw new NullPointerException();
@@ -64,6 +55,15 @@ public abstract class NetworkDataSource extends DataSource {
         }
 
         return null;
+    }
+
+    public abstract String createRequestURL(double lat, double lon, double alt,
+                                            float radius, String locale);
+
+    public abstract List<Marker> parse(JSONObject root);
+
+    public List<Marker> getMarkers() {
+        return markersCache;
     }
 
     protected String getHttpInputString(InputStream is) {
@@ -113,7 +113,7 @@ public abstract class NetworkDataSource extends DataSource {
         }
         if (json == null)
             throw new NullPointerException();
-        
+
         return parse(json);
     }
 }

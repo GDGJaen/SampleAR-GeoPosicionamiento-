@@ -13,13 +13,13 @@ public class VerticalSeekBar extends SeekBar {
     }
 
     public VerticalSeekBar(Context context, AttributeSet attrs, int defStyle) {
-    	super(context, attrs, defStyle);
+        super(context, attrs, defStyle);
     }
-    
+
     public VerticalSeekBar(Context context, AttributeSet attrs) {
-    	super(context, attrs);
+        super(context, attrs);
     }
-    
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(h, w, oldh, oldw);
@@ -46,17 +46,17 @@ public class VerticalSeekBar extends SeekBar {
         }
 
         switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN:
-        case MotionEvent.ACTION_MOVE:
-        case MotionEvent.ACTION_UP:
-            setProgress(getMax() - (int) (getMax() * event.getY() / getHeight()));
-            onSizeChanged(getWidth(), getHeight(), 0, 0);
-            break;
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_UP:
+                setProgress(getMax() - (int) (getMax() * event.getY() / getHeight()));
+                onSizeChanged(getWidth(), getHeight(), 0, 0);
+                break;
 
-        case MotionEvent.ACTION_CANCEL:
-            break;
+            case MotionEvent.ACTION_CANCEL:
+                break;
         }
         return true;
     }
-    
+
 }

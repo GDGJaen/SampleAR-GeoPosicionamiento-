@@ -6,9 +6,9 @@ public class PaintableLine extends PaintableObject {
     private int color = 0;
     private float x = 0;
     private float y = 0;
-    
+
     public PaintableLine(int color, float x, float y) {
-    	set(color, x, y);
+        set(color, x, y);
     }
 
     public void set(int color, float x, float y) {
@@ -17,21 +17,21 @@ public class PaintableLine extends PaintableObject {
         this.y = y;
     }
 
-	@Override
+    @Override
     public void paint(Canvas canvas) {
-    	if (canvas==null) throw new NullPointerException();
-    	
+        if (canvas == null) throw new NullPointerException();
+
         setFill(false);
-        setColor(color); 
+        setColor(color);
         paintLine(canvas, 0, 0, x, y);
     }
 
-	@Override
+    @Override
     public float getWidth() {
         return x;
     }
 
-	@Override
+    @Override
     public float getHeight() {
         return y;
     }

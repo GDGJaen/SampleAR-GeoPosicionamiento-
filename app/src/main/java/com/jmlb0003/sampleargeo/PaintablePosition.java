@@ -3,17 +3,17 @@ package com.jmlb0003.sampleargeo;
 import android.graphics.Canvas;
 
 public class PaintablePosition extends PaintableObject {
-    private float width=0, height=0;
-    private float objX=0, objY=0, objRotation=0, objScale=0;
+    private float width = 0, height = 0;
+    private float objX = 0, objY = 0, objRotation = 0, objScale = 0;
     private PaintableObject obj = null;
-    
+
     public PaintablePosition(PaintableObject drawObj, float x, float y, float rotation, float scale) {
-    	set(drawObj, x, y, rotation, scale);
+        set(drawObj, x, y, rotation, scale);
     }
 
     public void set(PaintableObject drawObj, float x, float y, float rotation, float scale) {
-    	if (drawObj==null) throw new NullPointerException();
-    	
+        if (drawObj == null) throw new NullPointerException();
+
         this.obj = drawObj;
         this.objX = x;
         this.objY = y;
@@ -35,26 +35,26 @@ public class PaintablePosition extends PaintableObject {
     public float getObjectsY() {
         return objY;
     }
-    
-	@Override
+
+    @Override
     public void paint(Canvas canvas) {
-    	if (canvas==null || obj==null) throw new NullPointerException();
-    	
+        if (canvas == null || obj == null) throw new NullPointerException();
+
         paintObj(canvas, obj, objX, objY, objRotation, objScale);
     }
 
-	@Override
+    @Override
     public float getWidth() {
         return width;
     }
 
-	@Override
+    @Override
     public float getHeight() {
         return height;
     }
 
     @Override
-	public String toString() {
-	    return "objX="+objX+" objY="+objY+" width="+width+" height="+height;
-	}
+    public String toString() {
+        return "objX=" + objX + " objY=" + objY + " width=" + width + " height=" + height;
+    }
 }

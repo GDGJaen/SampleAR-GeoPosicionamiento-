@@ -7,9 +7,9 @@ public class PaintableGps extends PaintableObject {
     private float strokeWidth = 0;
     private boolean fill = false;
     private int color = 0;
-    
+
     public PaintableGps(float radius, float strokeWidth, boolean fill, int color) {
-    	set(radius, strokeWidth, fill, color);
+        set(radius, strokeWidth, fill, color);
     }
 
     public void set(float radius, float strokeWidth, boolean fill, int color) {
@@ -19,23 +19,23 @@ public class PaintableGps extends PaintableObject {
         this.color = color;
     }
 
-	@Override
+    @Override
     public void paint(Canvas canvas) {
-    	if (canvas==null) throw new NullPointerException();
-    	
+        if (canvas == null) throw new NullPointerException();
+
         setStrokeWidth(strokeWidth);
         setFill(fill);
         setColor(color);
         paintCircle(canvas, 0, 0, radius);
     }
 
-	@Override
+    @Override
     public float getWidth() {
-        return radius*2;
+        return radius * 2;
     }
 
-	@Override
+    @Override
     public float getHeight() {
-	    return radius*2;
+        return radius * 2;
     }
 }

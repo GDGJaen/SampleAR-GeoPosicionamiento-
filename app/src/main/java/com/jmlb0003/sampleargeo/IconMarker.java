@@ -13,9 +13,9 @@ public class IconMarker extends Marker {
 
     @Override
     public void drawIcon(Canvas canvas) {
-    	if (canvas==null || bitmap==null) throw new NullPointerException();
+        if (canvas == null || bitmap == null) throw new NullPointerException();
 
-        if (gpsSymbol==null) gpsSymbol = new PaintableIcon(bitmap,96,96);
+        if (gpsSymbol == null) gpsSymbol = new PaintableIcon(bitmap, 96, 96);
 
         textXyzRelativeToCameraView.get(textArray);
         symbolXyzRelativeToCameraView.get(symbolArray);
@@ -23,7 +23,8 @@ public class IconMarker extends Marker {
         float currentAngle = Utilities.getAngle(symbolArray[0], symbolArray[1], textArray[0], textArray[1]);
         float angle = currentAngle + 90;
 
-        if (symbolContainer==null) symbolContainer = new PaintablePosition(gpsSymbol, symbolArray[0], symbolArray[1], angle, 1);
+        if (symbolContainer == null)
+            symbolContainer = new PaintablePosition(gpsSymbol, symbolArray[0], symbolArray[1], angle, 1);
         else symbolContainer.set(gpsSymbol, symbolArray[0], symbolArray[1], angle, 1);
 
         symbolContainer.paint(canvas);

@@ -3,13 +3,13 @@ package com.jmlb0003.sampleargeo;
 import android.graphics.Canvas;
 
 public class PaintablePoint extends PaintableObject {
-    private static int width=2;
-    private static int height=2;
+    private static int width = 2;
+    private static int height = 2;
     private int color = 0;
     private boolean fill = false;
-    
+
     public PaintablePoint(int color, boolean fill) {
-    	set(color, fill);
+        set(color, fill);
     }
 
     public void set(int color, boolean fill) {
@@ -17,21 +17,21 @@ public class PaintablePoint extends PaintableObject {
         this.fill = fill;
     }
 
-	@Override
+    @Override
     public void paint(Canvas canvas) {
-    	if (canvas==null) throw new NullPointerException();
-    	
+        if (canvas == null) throw new NullPointerException();
+
         setFill(fill);
         setColor(color);
         paintRect(canvas, -1, -1, width, height);
     }
 
-	@Override
+    @Override
     public float getWidth() {
         return width;
     }
 
-	@Override
+    @Override
     public float getHeight() {
         return height;
     }

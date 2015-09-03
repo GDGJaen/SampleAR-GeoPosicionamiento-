@@ -6,9 +6,9 @@ public class PaintableCircle extends PaintableObject {
     private int color = 0;
     private float radius = 0;
     private boolean fill = false;
-    
+
     public PaintableCircle(int color, float radius, boolean fill) {
-    	set(color, radius, fill);
+        set(color, radius, fill);
     }
 
     public void set(int color, float radius, boolean fill) {
@@ -19,8 +19,8 @@ public class PaintableCircle extends PaintableObject {
 
     @Override
     public void paint(Canvas canvas) {
-    	if (canvas==null) throw new NullPointerException();
-    	
+        if (canvas == null) throw new NullPointerException();
+
         setFill(fill);
         setColor(color);
         paintCircle(canvas, 0, 0, radius);
@@ -28,11 +28,11 @@ public class PaintableCircle extends PaintableObject {
 
     @Override
     public float getWidth() {
-        return radius*2;
+        return radius * 2;
     }
 
     @Override
     public float getHeight() {
-        return radius*2;
+        return radius * 2;
     }
 }
