@@ -11,7 +11,7 @@ import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * This activity is used for drawing AR objects (Markers) on screen
+ * This class is a view used for drawing AR objects (Markers) on screen
  */
 public class AugmentedView extends View {
     private static final AtomicBoolean drawing = new AtomicBoolean(false);
