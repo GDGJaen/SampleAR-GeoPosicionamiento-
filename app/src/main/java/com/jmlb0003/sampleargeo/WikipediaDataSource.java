@@ -31,22 +31,24 @@ public class WikipediaDataSource extends NetworkDataSource {
 
     @Override
     public String createRequestURL(double lat, double lon, double alt, float radius, String locale) {
+        //http://api.geonames.org/findNearbyWikipediaJSON?lat=37.6759861&lng=-3.5661972&radius=15&maxRows=500&lang=es&username=jmlb0003
         return BASE_URL +
                 "?lat=" + lat +
                 "&lng=" + lon +
+                //La opción gratuita de esta API no permite consultas con radius mayor que 20
                 "&radius=" + radius +
-                "&maxRows=40" +
-                "&lang=" + locale;
-
+                "&maxRows=500" +
+                "&lang=" + locale +
+                "&username=" + "jmlb0003";
     }
 
     @Override
     public List<Marker> parse(JSONObject root) {
         if (root == null) return null;
 
-        JSONObject jo = null;
+        JSONObject jo;
         JSONArray dataArray = null;
-        List<Marker> markers = new ArrayList<Marker>();
+        List<Marker> markers = new ArrayList<>();
 
         try {
             if (root.has("geonames")) dataArray = root.getJSONArray("geonames");
