@@ -23,6 +23,11 @@ import com.jmlb0003.sampleargeo.utilities.VerticalSeekBar;
 
 import java.text.DecimalFormat;
 
+/**
+ * This class contains an AugmentedView for drawing markers and extends SensorActivity for drawing
+ * them in the correct point on the screen. It implements onTouchListener because when you click on
+ * a marker app shows a toast with its name but it's not required.
+ */
 public class AugmentedActivity extends SensorsActivity implements OnTouchListener {
     public static final float MAX_ZOOM = 100; //in KM
     public static final float ONE_PERCENT = MAX_ZOOM / 100f;
