@@ -13,9 +13,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.jmlb0003.sampleargeo.Utilities.LowPassFilter;
-import com.jmlb0003.sampleargeo.Utilities.Matrix;
-import com.jmlb0003.sampleargeo.Utilities.Utilities;
+import com.jmlb0003.sampleargeo.utilities.LowPassFilter;
+import com.jmlb0003.sampleargeo.utilities.Matrix;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

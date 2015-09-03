@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.jmlb0003.sampleargeo.data.LocalDataSource;
-import com.jmlb0003.sampleargeo.sync.NetworkDataSource;
-import com.jmlb0003.sampleargeo.sync.WikipediaDataSource;
+import com.jmlb0003.sampleargeo.data.sync.NetworkDataSource;
+import com.jmlb0003.sampleargeo.data.sync.WikipediaDataSource;
 
 import java.util.List;
 import java.util.Map;

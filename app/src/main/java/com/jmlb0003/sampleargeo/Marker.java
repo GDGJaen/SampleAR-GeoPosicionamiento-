@@ -5,15 +5,15 @@ import android.graphics.Color;
 import android.location.Location;
 import android.util.Log;
 
-import com.jmlb0003.sampleargeo.Paintables.PaintableBox;
-import com.jmlb0003.sampleargeo.Paintables.PaintableBoxedText;
-import com.jmlb0003.sampleargeo.Paintables.PaintableGps;
-import com.jmlb0003.sampleargeo.Paintables.PaintableObject;
-import com.jmlb0003.sampleargeo.Paintables.PaintablePosition;
-import com.jmlb0003.sampleargeo.Utilities.CameraModel;
-import com.jmlb0003.sampleargeo.Utilities.PhysicalLocationUtility;
-import com.jmlb0003.sampleargeo.Utilities.Utilities;
-import com.jmlb0003.sampleargeo.Utilities.Vector;
+import com.jmlb0003.sampleargeo.paintables.PaintableBox;
+import com.jmlb0003.sampleargeo.paintables.PaintableBoxedText;
+import com.jmlb0003.sampleargeo.paintables.PaintableGps;
+import com.jmlb0003.sampleargeo.paintables.PaintableObject;
+import com.jmlb0003.sampleargeo.paintables.PaintablePosition;
+import com.jmlb0003.sampleargeo.utilities.CameraModel;
+import com.jmlb0003.sampleargeo.utilities.PhysicalLocationUtility;
+import com.jmlb0003.sampleargeo.utilities.Utilities;
+import com.jmlb0003.sampleargeo.utilities.Vector;
 
 import java.text.DecimalFormat;
 

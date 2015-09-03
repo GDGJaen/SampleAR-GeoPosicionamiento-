@@ -1,4 +1,4 @@
-package com.jmlb0003.sampleargeo.sync;
+package com.jmlb0003.sampleargeo.data.sync;
 
 import com.jmlb0003.sampleargeo.data.DataSource;
 import com.jmlb0003.sampleargeo.Marker;

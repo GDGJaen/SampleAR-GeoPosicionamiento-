@@ -1,4 +1,4 @@
-package com.jmlb0003.sampleargeo.sync;
+package com.jmlb0003.sampleargeo.data.sync;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

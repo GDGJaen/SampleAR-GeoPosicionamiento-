@@ -5,7 +5,7 @@ import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.jmlb0003.sampleargeo.Utilities.CameraCompatibility;
+import com.jmlb0003.sampleargeo.utilities.CameraCompatibility;
 
 import java.util.Iterator;
 import java.util.List;

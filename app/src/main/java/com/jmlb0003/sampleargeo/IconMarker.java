@@ -3,9 +3,9 @@ package com.jmlb0003.sampleargeo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.jmlb0003.sampleargeo.Paintables.PaintableIcon;
-import com.jmlb0003.sampleargeo.Paintables.PaintablePosition;
-import com.jmlb0003.sampleargeo.Utilities.Utilities;
+import com.jmlb0003.sampleargeo.paintables.PaintableIcon;
+import com.jmlb0003.sampleargeo.paintables.PaintablePosition;
+import com.jmlb0003.sampleargeo.utilities.Utilities;
 
 public class IconMarker extends Marker {
     private Bitmap bitmap = null;

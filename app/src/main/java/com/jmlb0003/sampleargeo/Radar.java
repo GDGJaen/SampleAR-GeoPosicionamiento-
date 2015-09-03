@@ -3,14 +3,14 @@ package com.jmlb0003.sampleargeo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.jmlb0003.sampleargeo.Paintables.PaintableCircle;
-import com.jmlb0003.sampleargeo.Paintables.PaintableLine;
-import com.jmlb0003.sampleargeo.Paintables.PaintablePosition;
-import com.jmlb0003.sampleargeo.Paintables.PaintableRadarPoints;
-import com.jmlb0003.sampleargeo.Paintables.PaintableText;
-import com.jmlb0003.sampleargeo.Utilities.CameraModel;
-import com.jmlb0003.sampleargeo.Utilities.PitchAzimuthCalculator;
-import com.jmlb0003.sampleargeo.Utilities.ScreenPositionUtility;
+import com.jmlb0003.sampleargeo.paintables.PaintableCircle;
+import com.jmlb0003.sampleargeo.paintables.PaintableLine;
+import com.jmlb0003.sampleargeo.paintables.PaintablePosition;
+import com.jmlb0003.sampleargeo.paintables.PaintableRadarPoints;
+import com.jmlb0003.sampleargeo.paintables.PaintableText;
+import com.jmlb0003.sampleargeo.utilities.CameraModel;
+import com.jmlb0003.sampleargeo.utilities.PitchAzimuthCalculator;
+import com.jmlb0003.sampleargeo.utilities.ScreenPositionUtility;
 
 public class Radar {
     public static final float RADIUS = 48;
